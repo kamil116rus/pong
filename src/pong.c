@@ -40,6 +40,7 @@ int game() {
     int end_of_game = 0;             // флаг окончания игры
     while (!end_of_game) {
         printf("\033[0d\033[2J");  // чистка экрана
+        printf("\n");
         draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
         char c = raket(&raket_a, &raket_b, &speed);
         printf("as");
