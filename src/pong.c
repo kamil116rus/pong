@@ -8,7 +8,7 @@
 #define SIZE_X 80
 #define SIZE_Y 25
 #define MAX_SPEED 20000
-#define MIN_SPEED 200000
+#define MIN_SPEED 300000
 #define STEP_SPEED 10000
 
 void player_a();
@@ -149,8 +149,8 @@ int raket_b_yes(int raket_b, int ball_x, int ball_y, int vector_x, int vector_y)
 // Функция считывания клавиатуры и изменения положения ракеток
 char raket(int *raket_a, int *raket_b, int *speed) {
     system("stty -icanon crtkill");
-    char c = 'r';
-    while (c != 'q') {
+    char c;
+    while (kbhit() != 0) {
         switch (c = tolower(getchar())) {
             case 'a':
                 if (*raket_a > 2) *raket_a -= 1;
