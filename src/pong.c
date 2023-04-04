@@ -149,8 +149,8 @@ int raket_b_yes(int raket_b, int ball_x, int ball_y, int vector_x, int vector_y)
 // Функция считывания клавиатуры и изменения положения ракеток
 char raket(int *raket_a, int *raket_b, int *speed) {
     system("stty -icanon crtkill");
-    char c;
-    while (1) {
+    char c = 'r';
+    while (c != 'q') {
         switch (c = tolower(getchar())) {
             case 'a':
                 if (*raket_a > 2) *raket_a -= 1;
