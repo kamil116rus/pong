@@ -102,21 +102,26 @@ void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ba
             }
         }
     }
+    printf("raket_a -%d, raket_b - %d, ball_x -%d ball_y - %d ", raket_a, raket_b, ball_x, ball_y);
 }
 
 void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int *vector_y) {
     if (raket_a_yes(raket_a, *ball_x, *ball_y, *vector_x, *vector_y) == 1) {
         *vector_x *= -1;
-    } else if (raket_a_yes(raket_a, *ball_x, *ball_y, *vector_x, *vector_y) == 2) {
+    }
+    if (raket_a_yes(raket_a, *ball_x, *ball_y, *vector_x, *vector_y) == 2) {
         *vector_x *= -1;
         *vector_y *= -1;
-    } else if (raket_b_yes(raket_b, *ball_x, *ball_y, *vector_x, *vector_y) == 1) {
+    }
+    if (raket_b_yes(raket_b, *ball_x, *ball_y, *vector_x, *vector_y) == 1) {
         *vector_x *= -1;
-    } else if (raket_b_yes(raket_b, *ball_x, *ball_y, *vector_x, *vector_y) == 2) {
+    }
+    if (raket_b_yes(raket_b, *ball_x, *ball_y, *vector_x, *vector_y) == 2) {
         *vector_x *= -1;
         *vector_y *= -1;
-    } else if ((*ball_y == 1 && *vector_y == -1) ||
-               (*ball_y == SIZE_Y - 2 && *vector_y == 1)) {  //меняем направление при касании краев
+    }
+    if ((*ball_y == 1 && *vector_y == -1) ||
+        (*ball_y == SIZE_Y - 2 && *vector_y == 1)) {  //меняем направление при касании краев
         *vector_y *= -1;
     }
     *ball_x += *vector_x;
