@@ -150,7 +150,7 @@ int raket_b_yes(int raket_b, int ball_x, int ball_y, int vector_x, int vector_y)
 char raket(int *raket_a, int *raket_b, int *speed) {
     system("stty -icanon crtkill");
     char c;
-    while (kbhit() != 0) {
+    while (1) {
         switch (c = tolower(getchar())) {
             case 'a':
                 if (*raket_a > 2) *raket_a -= 1;
