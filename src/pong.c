@@ -36,13 +36,17 @@ int game() {
     int ball_x = 40, ball_y = 12;    // начальные координаты мяча
     int vector_x = 1, vector_y = 1;  // начальное направление движения мяча
     int score_a = 0, score_b = 0;    // счет игры
-    char end_of_game = 'y';          // флаг окончания игры
-    while (end_of_game != 'q') {
+    int end_of_game = 1;             // флаг окончания игры
+    while (!end_of_game) {
         printf("\033[0d\033[2J");  // чистка экрана
         draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
-        end_of_game = raket(&raket_a, &raket_b, &speed);
+        char c = raket(&raket_a, &raket_b, &speed);
+        printf("as");
         ball(raket_a, raket_b, &ball_x, &ball_y, &vector_x, &vector_y);
         usleep(speed);
+        if (c == 'q' || (score_a = 21 || score_b == 21)) {
+            end_of_game = 0;
+        }
     }
 
     return win;
@@ -120,7 +124,7 @@ int raket_b_yes(int raket_b, int ball_x, int ball_y, int vector_x, int vector_y)
     return temp;
 }
 
-// Фнуекция считывания клавиатуры и изменения положения ракеток
+// Функция считывания клавиатуры и изменения положения ракеток
 char raket(int *raket_a, int *raket_b, int *speed) {
     system("stty -icanon crtkill");
     char c;
