@@ -140,7 +140,7 @@ char raket(int *raket_a, int *raket_b, int *speed) {
             case 'a':
                 if (*raket_a > 2) *raket_a -= 1;
                 break;
-            case 'b':
+            case 'z':
                 if (*raket_a < SIZE_Y - 3) *raket_a += 1;
                 break;
             case 'k':
