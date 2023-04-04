@@ -44,8 +44,9 @@ int game() {
         draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
         char c = raket(&raket_a, &raket_b, &speed);
         printf("as");
-        ball(raket_a, raket_b, &ball_x, &ball_y, &vector_x, &vector_y);
         counter(&ball_x, &ball_y, raket_a, raket_b, &score_a, &score_b);
+        ball(raket_a, raket_b, &ball_x, &ball_y, &vector_x, &vector_y);
+
         usleep(speed);
         if (c == 'q' || score_a == 21 || score_b == 21) {
             end_of_game = 1;
