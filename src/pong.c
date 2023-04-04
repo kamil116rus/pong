@@ -1,7 +1,15 @@
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>      // для system
+#include <sys/select.h>  // для kbhit
+#include <termios.h>     // для kbhit
+#include <unistd.h>      // для паузы
 
 #define SIZE_X 80
 #define SIZE_Y 25
+#define MAX_SPEED 20000
+#define MIN_SPEED 200000
+#define STEP_SPEED 10000
 
 void player_a();
 void player_b();
@@ -10,6 +18,8 @@ void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ba
 void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int *vector_y);
 int raket_a_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y);
 int raket_b_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y);
+char raket(int *raket_a, int *raket_b, int *speed);
+int kbhit();
 
 int main() {
     if (game() == 1) {
@@ -21,18 +31,19 @@ int main() {
 }
 
 int game() {
-    int win = 0;
+    int win = 0, speed = 150000;
     int raket_a = 12, raket_b = 12;  // начальные координаты ракеток по оси Y
     int ball_x = 40, ball_y = 12;    // начальные координаты мяча
-    // int vector_x = 1,
-    // vector_y = 1; // начальное направление движения мяча по оси Х и оси Y
-    int score_a = 0, score_b = 0;  // счет игры
-    // int end_of_game = 0;          // флаг окончания игры
-    // while(!end_of_game) {
-    printf("\033[0d\033[2J");  // чистка экрана
-    draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
-
-    //}
+    int vector_x = 1, vector_y = 1;  // начальное направление движения мяча
+    int score_a = 0, score_b = 0;    // счет игры
+    char end_of_game = 'y';          // флаг окончания игры
+    while (end_of_game != 'q') {
+        printf("\033[0d\033[2J");  // чистка экрана
+        draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
+        end_of_game = raket(&raket_a, &raket_b, &speed);
+        ball(raket_a, raket_b, &ball_x, &ball_y, &vector_x, &vector_y);
+        usleep(speed);
+    }
 
     return win;
 }
@@ -84,6 +95,7 @@ void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int
     *ball_x += *vector_x;
     *ball_y += *vector_y;
 }
+
 int raket_a_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y) {
     int temp = 0;
     if (ball_x == 4 && vector_x == -1) {
@@ -108,6 +120,47 @@ int raket_b_yes(int raket_b, int ball_x, int ball_y, int vector_x, int vector_y)
     return temp;
 }
 
-void player_a() { printf("WUN 1"); }
+// Фнуекция считывания клавиатуры и изменения положения ракеток
+char raket(int *raket_a, int *raket_b, int *speed) {
+    system("stty -icanon crtkill");
+    char c;
+    while (!kbhit()) {
+        switch (c = tolower(getchar())) {
+            case 'a':
+                if (*raket_a > 2) *raket_a -= 1;
+                break;
+            case 'b':
+                if (*raket_a < SIZE_Y - 3) *raket_a += 1;
+                break;
+            case 'k':
+                if (*raket_b > 2) *raket_b -= 1;
+                break;
+            case 'm':
+                if (*raket_b < SIZE_Y - 3) *raket_b += 1;
+                break;
+            case 'f':
+                if (*speed > MIN_SPEED) *speed -= STEP_SPEED;
+                break;
+            case 'v':
+                if (*speed < MAX_SPEED) *speed += STEP_SPEED;
+                break;
+        }
+    }
+    return c;
+}
 
-void player_b() { printf("WUN 2"); }
+int kbhit() {  // Функция kbhit() возвращает истину, если нажата какая-либо
+               // клавиша на клавиатуре.
+    struct timeval tv;  // В против­ном случае возвращается 0.
+    fd_set fds;  //  В любом случае код клавиши не удаляется из входного буфера.
+    tv.tv_sec = 0;
+    tv.tv_usec = 0;
+    FD_ZERO(&fds);
+    FD_SET(STDIN_FILENO, &fds);
+    select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
+    return FD_ISSET(STDIN_FILENO, &fds);
+}
+
+void player_a() { printf("WIN 1"); }
+
+void player_b() { printf("WIN 2"); }
