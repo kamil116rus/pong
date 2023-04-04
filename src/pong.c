@@ -60,6 +60,20 @@ int game() {
 }
 
 void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ball_y) {
+    printf(
+        "*********************************************************************"
+        "***********\n");
+    // printf("* *\n");
+    printf(
+        "*              ИГРОК А              PONG (c)             ИГРОК Б     "
+        "          *\n");
+    printf(
+        "*        Вверх: А    Вниз: Z            :          Вверх: K    Вниз: "
+        "M         *\n");
+    printf(
+        "*         \033[1;32mСКОРОСТЬ ВВЕРХ: G        \033[31mВыход: Q        "
+        " \033[32mСКОРОСТЬ ВНИЗ: "
+        "V\033[0m           *\n");
     for (int i = 0; i < SIZE_Y; i++) {
         for (int j = 0; j < SIZE_X; j++) {
             if (j == SIZE_X - 1) {
