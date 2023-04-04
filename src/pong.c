@@ -8,6 +8,8 @@ void player_b();
 int game();
 void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ball_y);
 void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int *vector_y);
+int raket_a_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y);
+int raket_b_yes(int raket_a,int ball_x, int ball_y, int vector_x, int vector_y);
 
 int main() {
     if (game() == 1) {
@@ -68,8 +70,26 @@ void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ba
 void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int *vector_y) {
     if (*ball_y == 1 || *ball_y == SIZE_Y - 2) {  //меняем направление при касании краев
         *vector_y *= -1;
-    } else if (raket_a_yes(raket_a, ball_x, ball_y))
-}  ////////////////////
+    } else if (raket_a_yes(&raket_a, &ball_x, &ball_y, &vector_x, &vector_y) == 1) {
+      *vector_x *= -1;
+    } else if (raket_a_yes(&raket_a, &ball_x, &ball_y, &vector_x, &vector_y) == 2) {
+      *vector_x *= -1;
+      *vector_y *= -1;
+    }  else if (raket_b_yes(&raket_b, &ball_x, &ball_y, &vector_x, &vector_y) == 1) {
+      *vector_x *= -1;
+    } else if (raket_b_yes(&raket_b, &ball_x, &ball_y, &vector_x, &vector_y) == 2) {
+      *vector_x *= -1;
+      *vector_y *= -1;
+    }
+    *ball_x += *vector_x;
+    *ball_y += *vector_y;
+}  
+int raket_a_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y) {
+    int temo
+}
+
+
+int raket_b_yes(int raket_a,int ball_x, int ball_y, int vector_x, int vector_y);
 
 void player_a() { printf("WUN 1"); }
 
