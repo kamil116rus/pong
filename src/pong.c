@@ -20,6 +20,7 @@ int raket_a_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y)
 int raket_b_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y);
 char raket(int *raket_a, int *raket_b, int *speed);
 int kbhit();
+void counter(int *ball_x, int *ball_y, int raket_a, int raket_b, int *score_a, int *score_b);
 
 int main() {
     if (game() == 1) {
@@ -163,6 +164,20 @@ int kbhit() {  // Функция kbhit() возвращает истину, ес
     FD_SET(STDIN_FILENO, &fds);
     select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
     return FD_ISSET(STDIN_FILENO, &fds);
+}
+
+// Функция подсчета голов
+void counter(int *ball_x, int *ball_y, int raket_a, int raket_b, int *score_a, int *score_b) {
+    if (*ball_x == 1) {
+        *score_b += 1;
+        *ball_x = SIZE_X - 5;
+        *ball_y = raket_b;
+    }
+    if (*ball_x == SIZE_X - 2) {
+        *score_a += 1;
+        *ball_x = 4;
+        *ball_y = raket_a;
+    }
 }
 
 void player_a() { printf("WIN 1"); }
