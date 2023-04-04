@@ -75,6 +75,7 @@ void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ba
         "*         \033[1;32mСКОРОСТЬ ВВЕРХ: G        \033[31mВыход: Q        "
         " \033[32mСКОРОСТЬ ВНИЗ: "
         "V\033[0m           *\n");
+    printf("raket_a -%d, raket_b - %d, ball_x -%d ball_y - %d ", raket_a, raket_b, ball_x, ball_y);
     for (int i = 0; i < SIZE_Y; i++) {
         for (int j = 0; j < SIZE_X; j++) {
             if (j == SIZE_X - 1) {
@@ -102,7 +103,6 @@ void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ba
             }
         }
     }
-    printf("raket_a -%d, raket_b - %d, ball_x -%d ball_y - %d ", raket_a, raket_b, ball_x, ball_y);
 }
 
 void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int *vector_y) {
