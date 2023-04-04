@@ -42,10 +42,10 @@ int game() {
         printf("\033[0d\033[2J");  // чистка экрана
         printf("\n");
         draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
+        ball(raket_a, raket_b, &ball_x, &ball_y, &vector_x, &vector_y);
         char c = raket(&raket_a, &raket_b, &speed);
         printf("as");
         counter(&ball_x, &ball_y, raket_a, raket_b, &score_a, &score_b);
-        ball(raket_a, raket_b, &ball_x, &ball_y, &vector_x, &vector_y);
 
         usleep(speed);
         if (c == 'q' || score_a == 21 || score_b == 21) {
