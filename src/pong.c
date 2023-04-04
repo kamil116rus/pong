@@ -19,15 +19,15 @@ int main() {
 }
 
 int game() {
-  int win;
+  int win = 0;
   int raket_a = 12, raket_b = 12; // начальные координаты ракеток по оси Y
   int ball_x = 40, ball_y = 12; // начальные координаты мяча
-  int vector_x = 1,
-      vector_y = 1; // начальное направление движения мяча по оси Х и оси Y
+  // int vector_x = 1,
+  // vector_y = 1; // начальное направление движения мяча по оси Х и оси Y
   int score_a = 0, score_b = 0; // счет игры
-  int end_of_game = 0;          // флаг окончания игры
-                                // while(!end_of_game) {
-  printf("\033[0d\033[2J");     // чистка экрана
+  // int end_of_game = 0;          // флаг окончания игры
+  // while(!end_of_game) {
+  printf("\033[0d\033[2J"); // чистка экрана
   draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
   //}
 
@@ -42,17 +42,30 @@ void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x,
         printf("*\n");
       } else if (i == 0 || j == 0 || i == SIZE_Y - 1) {
         printf("*");
-      }else if((i == raket_a  || i - 1 = raket_a || i + 1 == raket_a) && j == 3) {
+      } else if ((i == raket_a || i - 1 == raket_a || i + 1 == raket_a) &&
+                 j == 3) {
         printf("|");
-      } else if((i == raket_b  || i - 1 = raket_b || i + 1 == raket_b) && j == SIZE_X - 4) {
+      } else if ((i == raket_b || i - 1 == raket_b || i + 1 == raket_b) &&
+                 j == SIZE_X - 4) {
         printf("|");
-      } else if(i == ball_y && j == ball_x) {
+      } else if (i == ball_y && j == ball_x) {
         printf("o");
-      } else if(i == SIZE_X / 4 && j == SIZE_Y / 4) {///////////////////////////////////////////////////
-        printf("|");
-      }else {
+      } else if (i == SIZE_Y / 4 && j == SIZE_X / 4 && score_a >= 10) {
+        printf("%d", score_a / 10);
+      } else if (i == SIZE_Y / 4 && j == (SIZE_X / 4) + 1) {
+        printf("%d", score_a % 10);
+      } else if (i == SIZE_Y / 4 && j == SIZE_X - (SIZE_X / 4) &&
+                 score_a >= 10) {
+        printf("%d", score_b / 10);
+      } else if (i == SIZE_Y / 4 && j == (SIZE_X - (SIZE_X / 4)) + 1) {
+        printf("%d", score_b % 10);
+      } else {
         printf(" ");
       }
     }
   }
 }
+
+void player_a() { printf("WUN 1"); }
+
+void player_b() { printf("WUN 2"); }

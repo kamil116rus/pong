@@ -1,0 +1,1 @@
+The task is to make a Ping Pong game.
