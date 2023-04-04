@@ -1,7 +1,7 @@
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 
-all: clang sborka git ./main
+all: clang sborka git go
 
 sborka: pong.c 
 	$(CC) $(FLAGS)  pong.c -o main
@@ -13,3 +13,6 @@ git:
 	git add . 
 	git commit -m"make commit"
 	git push origin main
+
+go:
+	./main
