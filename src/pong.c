@@ -44,12 +44,17 @@ int game() {
         char c = raket(&raket_a, &raket_b, &speed);
         printf("as");
         ball(raket_a, raket_b, &ball_x, &ball_y, &vector_x, &vector_y);
+        counter(&ball_x, &ball_y, raket_a, raket_b, &score_a, &score_b);
         usleep(speed);
         if (c == 'q' || (score_a = 21 || score_b == 21)) {
             end_of_game = 1;
         }
     }
-
+    if (score_a > score_b) {
+        win = 1;
+    } else {
+        win = 2;
+    }
     return win;
 }
 
@@ -129,7 +134,7 @@ int raket_b_yes(int raket_b, int ball_x, int ball_y, int vector_x, int vector_y)
 char raket(int *raket_a, int *raket_b, int *speed) {
     system("stty -icanon crtkill");
     char c;
-    while (!kbhit()) {
+    while (kbhit() != 0) {
         switch (c = tolower(getchar())) {
             case 'a':
                 if (*raket_a > 2) *raket_a -= 1;
