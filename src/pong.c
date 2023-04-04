@@ -38,7 +38,7 @@ int game() {
     int vector_x = 1, vector_y = 1;  // начальное направление движения мяча
     int score_a = 0, score_b = 0;    // счет игры
     int end_of_game = 0;             // флаг окончания игры
-    while (end_of_game) {
+    while (!end_of_game) {
         printf("\033[0d\033[2J");  // чистка экрана
         draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
         char c = raket(&raket_a, &raket_b, &speed);
