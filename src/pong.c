@@ -106,7 +106,8 @@ void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ba
 }
 
 void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int *vector_y) {
-    if ((*ball_y <= 1) || (*ball_y >= SIZE_Y - 2)) {  //меняем направление при касании краев
+    if ((*ball_y <= 1 && *vector_y == -1) ||
+        (*ball_y >= SIZE_Y - 2 && *vector_y == 1)) {  //меняем направление при касании краев
         *vector_y *= -1;
     }
     if (raket_a_yes(raket_a, *ball_x, *ball_y, *vector_x, *vector_y) == 1) {
