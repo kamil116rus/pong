@@ -31,6 +31,7 @@ int main() {
     return 0;
 }
 
+// Функция основной игры
 int game() {
     int win = 0, speed = 150000;
     int raket_a = 12, raket_b = 12;  // начальные координаты ракеток по оси Y
@@ -60,6 +61,7 @@ int game() {
     return win;
 }
 
+// функция печати поля
 void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ball_y) {
     printf(
         "*********************************************************************"
@@ -105,6 +107,7 @@ void draw(int raket_a, int raket_b, int score_a, int score_b, int ball_x, int ba
     }
 }
 
+//функция логики движения мяча
 void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int *vector_y) {
     if ((*ball_y <= 1 && *vector_y == -1) ||
         (*ball_y >= SIZE_Y - 2 && *vector_y == 1)) {  //меняем направление при касании краев
@@ -207,6 +210,160 @@ void counter(int *ball_x, int *ball_y, int raket_a, int raket_b, int *score_a, i
     }
 }
 
-void player_a() { printf("WIN 1"); }
+void player_a() {
+    printf(
+        "\033[1;32m*********************************************************"
+        "***********************\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*                 *       *          *        *       *            "
+        "            *\n");
+    printf(
+        "*                 *       *          *        *  *    *            "
+        "            *\n");
+    printf(
+        "*                 *   *   *          *        *   *   *            "
+        "            *\n");
+    printf(
+        "*                 * *   * *          *        *     * *            "
+        "            *\n");
+    printf(
+        "*                 *       *          *        *       *            "
+        "            *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*            ***       *           ***    *       *    *****    "
+        "***            *\n");
+    printf(
+        "*            *   *     *         *   *      *   *      *        *  "
+        " *          *\n");
+    printf(
+        "*            ***       *        *    *        *        ***      "
+        "***            *\n");
+    printf(
+        "*            *         *        ******        *        *        *  "
+        "*           *\n");
+    printf(
+        "*            *         ****     *    *        *        *****    *  "
+        " *          *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*                                      ****                        "
+        "            *\n");
+    printf(
+        "*                                    *    *                        "
+        "            *\n");
+    printf(
+        "*                                   *     *                        "
+        "            *\n");
+    printf(
+        "*                                   *     *                        "
+        "            *\n");
+    printf(
+        "*                                   *     *                        "
+        "            *\n");
+    printf(
+        "*                                   *******                        "
+        "            *\n");
+    printf(
+        "*                                   *     *                        "
+        "            *\n");
+    printf(
+        "*                                   *     *                        "
+        "            *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*******************************************************************"
+        "*************\033[0m\n");
+    printf("\n");
+}
 
-void player_b() { printf("WIN 2"); }
+void player_b() {
+    printf(
+        "\033[1;32m*********************************************************"
+        "***********************\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*                 *       *          *        *       *            "
+        "            *\n");
+    printf(
+        "*                 *       *          *        *  *    *            "
+        "            *\n");
+    printf(
+        "*                 *   *   *          *        *   *   *            "
+        "            *\n");
+    printf(
+        "*                 * *   * *          *        *     * *            "
+        "            *\n");
+    printf(
+        "*                 *       *          *        *       *            "
+        "            *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*            ***       *           ***    *       *    *****    "
+        "***            *\n");
+    printf(
+        "*            *   *     *         *   *      *   *      *        *  "
+        " *          *\n");
+    printf(
+        "*            ***       *        *    *        *        ***      "
+        "***            *\n");
+    printf(
+        "*            *         *        ******        *        *        *  "
+        "*           *\n");
+    printf(
+        "*            *         ****     *    *        *        *****    *  "
+        " *          *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*                                    *****                         "
+        "            *\n");
+    printf(
+        "*                                    *     *                       "
+        "            *\n");
+    printf(
+        "*                                    *     *                       "
+        "            *\n");
+    printf(
+        "*                                    ******                        "
+        "            *\n");
+    printf(
+        "*                                    *      *                      "
+        "            *\n");
+    printf(
+        "*                                    *      *                      "
+        "            *\n");
+    printf(
+        "*                                    *******                       "
+        "            *\n");
+    printf(
+        "*                                                                  "
+        "            *\n");
+    printf(
+        "*******************************************************************"
+        "*************\033[0m\n");
+    printf("\n");
+}
