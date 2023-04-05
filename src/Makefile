@@ -1,7 +1,7 @@
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 
-all: clang sborka git go
+all: sborka go
 
 sborka: pong.c 
 	$(CC) $(FLAGS)  pong.c -o main

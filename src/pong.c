@@ -1,3 +1,5 @@
+/* PING_PONG */
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>      // для system
@@ -45,9 +47,7 @@ int game() {
         draw(raket_a, raket_b, score_a, score_b, ball_x, ball_y);
         ball(raket_a, raket_b, &ball_x, &ball_y, &vector_x, &vector_y);
         char c = raket(&raket_a, &raket_b, &speed);
-        printf("as");
         counter(&ball_x, &ball_y, raket_a, raket_b, &score_a, &score_b);
-
         usleep(speed);
         if (c == 'q' || score_a == 21 || score_b == 21) {
             end_of_game = 1;
@@ -131,6 +131,7 @@ void ball(int raket_a, int raket_b, int *ball_x, int *ball_y, int *vector_x, int
     *ball_y += *vector_y;
 }
 
+// функция проверяет был ли удар об ракетку а
 int raket_a_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y) {
     int temp = 0;
     if (ball_x == 4 && vector_x == -1) {
@@ -143,6 +144,7 @@ int raket_a_yes(int raket_a, int ball_x, int ball_y, int vector_x, int vector_y)
     return temp;
 }
 
+// функция проверяет был ли удар об ракетку b
 int raket_b_yes(int raket_b, int ball_x, int ball_y, int vector_x, int vector_y) {
     int temp = 0;
     if (ball_x == SIZE_X - 5 && vector_x == 1) {
